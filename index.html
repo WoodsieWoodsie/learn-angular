@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
+  <style>
+    .red { color: red;}
+    .text { white-space: pre-line;}
+    .fav-true { font-weight: bold;}
+  </style>
+</head>
+<body>
+
+  
+  <div ng-app="twitterApp">
+    <div ng-controller="tweetForm">
+      <textarea name="" id="" cols="30" rows="10" ng-model="tweet.text" ng-trim="false" ng-class="{red: invalidTweet()}"></textarea>
+      <div ng-class="{red: invalidTweet()}">{{charactersLeft()}}</div>
+      <button ng-disabled="invalidTweet()" ng-click="addTweet(tweet)">tweet</button>
+      <div>
+        <div ng-hide="tweets.length">No tweets, be the first to tweet!</div>
+        <ul>
+          <li ng-repeat="(key, tweet) in tweets" class="fav-{{tweet.fav}}">{{tweet.text}}
+            <i class="fa fa-trash-o" ng-click="deleteTweet(key)"></i>
+            <i class="fa fa-heart" ng-click="favTweet(key)"></i>
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>
